@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Post, Render, Request, Response, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Post, Redirect, Render, Request, Response, UseGuards } from '@nestjs/common';
 import { AuthService } from '../services/auth.service';
 import { AuthGuard } from '../guard/auth.guard';
 
@@ -31,11 +31,16 @@ export class AuthController {
         const validaruser = await this.authService.validateUser(userT, passT)
 
         if(validaruser){
-            return res.redirect("/perfil")
+            return res.redirect("menu")
         }
-        return res.status(HttpStatus.UNAUTHORIZED).render('index', { error: 'Credenciales inválidas' });
+        return res.status(HttpStatus.UNAUTHORIZED).render
+        ('index', { error: 'Credenciales inválidas' });
 
     }
+
+    @Get("menu")
+    @Render("menu")
+    getmenu(){}
 
     
 }

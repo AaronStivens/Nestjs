@@ -1,7 +1,7 @@
 import { Injectable, ParseFloatPipe, UnauthorizedException } from '@nestjs/common';
 import { UsersService } from 'src/users/services/users.service';
 import { JwtService } from '@nestjs/jwt';
-import { Response } from 'express';
+import * as colors from "colors";
 
 @Injectable()
 export class AuthService {
@@ -20,20 +20,18 @@ export class AuthService {
 
     }
 
-    async validateUser(usuario: string, password: string): Promise<boolean> {
-        
-        const user = await this.usersService.findOne(usuario);
-    
-        
-        if (user && user.contraseña === password) {
-         console.log("Usuario correcto")
-          return true
+    async validateUser(usuario:string, pass): Promise<boolean> {
+        const user = await this.usersService.findOne(usuario)
+
+        if(user && user.contraseña === pass){
+            console.log(colors.green("Usuario correcto"))
+            return true;
+        }else{
+            console.log(colors.red("Usuario incorrecto"))
+            return false;
         }
-        console.log("Usuario incorrecto")
-        return false;
-        
        
-      }
+        }
     }
 
    
