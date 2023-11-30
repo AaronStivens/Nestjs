@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="./estilos.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>inicio</title>
 </head>
@@ -10,8 +9,8 @@
 <form class="form" id="form" action="sesion" style="text-align: center;" method="post">
     <h1>Bienvenido</h1>
 
-<input type="text" name="userT" id="userT">
-<input type="text" name="passT" id="passT">
+<input type="text" name="userT" required placeholder="Usuario" id="userT" autocomplete="off">
+<input type="text" name="passT" id="passT" required placeholder="contraseña" autocomplete="off">
 <button class="BtnI" type="submit">Ingresar</button>
 
 </form>
@@ -19,51 +18,66 @@
 </html>
 
 <style>
-   body {
-      font-family: 'Arial', sans-serif;
-      background-color: rgb(48, 113, 197);
-      margin: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
+  body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(-45deg, #831515, #000000, #9b00c2, #5223d5);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    height: 100vh;
+  }
 
-    .form {
-      background-color: #646060;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.973);
-      text-align: center;
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
     }
-
-    h1 {
-      color: #fdfdfd;
-      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    50% {
+      background-position: 100% 50%;
     }
-
-    input {
-      width: 100%;
-      padding: 10px;
-      box-sizing: border-box;
-      border: 1px solid #0e0d0d;
-      border-radius: 6px;
-      margin-bottom: 15px;
-      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-      font-size: large;
+    100% {
+      background-position: 0% 50%;
     }
+  }
+  .form {
+    background-color: #646060;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.973);
+    text-align: center;
+    transition-duration: 1s;
+  }
 
-    .BtnI {
-      background-color: rgb(76, 122, 175);
-      color: #fff;
-      cursor: pointer;
-      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-      font-size: x-large;
-      transition-duration: 1s;
-    }
+  h1 {
+    color: #fdfdfd;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
 
-    .BtnI:hover {
-      background-color: #000000;
-    }
+  input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #0e0d0d;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: large;
+  }
 
+  .BtnI {
+    background-color: rgb(76, 122, 175);
+    color: #fff;
+    cursor: pointer;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: xx-large;
+    transition-duration: 1s;
+    border-radius: 10px;
+  }
+
+  .BtnI:hover {
+    background-color: #000000;
+  }
 </style>
