@@ -11,8 +11,8 @@ import { UsersProjecEntity } from '../entity/usersproject.entity';
 export class UsersService {
 
     constructor(@InjectRepository(UsersEntity) private readonly userRepository: Repository<UsersEntity>,
-                @InjectRepository(UsersProjecEntity) private readonly userprojectRepository: Repository<UsersProjecEntity>
-                ){process.env.HASH_SALT}
+                @InjectRepository(UsersProjecEntity) private readonly userprojectRepository: Repository<UsersProjecEntity>,)
+                {process.env.HASH_SALT}
     
     //Creacion de usuario
     public async createUser(Body:UserDTO):Promise<UsersEntity>{
@@ -104,6 +104,5 @@ export class UsersService {
         const user = await this.userRepository.findOne({ where: { usuario: usuario } });
         return user;
     }
-
 
 }

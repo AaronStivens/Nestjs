@@ -1,6 +1,8 @@
 import { Body, Controller, Get, HttpCode, HttpStatus, Post, Redirect, Render, Request, Response, UseGuards } from '@nestjs/common';
 import { AuthService } from '../services/auth.service';
-import { AuthGuard } from '../guard/auth.guard';
+import { JwtAuthGuard } from '../guard/auth.guard';
+import { LocalAuthGuard } from '../guard/local.guard';
+import { request } from 'express';
 
 @Controller('auth')
 export class AuthController {
@@ -13,7 +15,7 @@ export class AuthController {
         return this.authService.signIn(singInDTO.usuario,singInDTO.contraseña)
     }
     
-    @UseGuards(AuthGuard)
+    @UseGuards(JwtAuthGuard)
     @Get("perfil")
     getPerfil(@Request() req){
         return req.usuario
@@ -31,13 +33,15 @@ export class AuthController {
         const validaruser = await this.authService.validateUser(userT, passT)
 
         if(validaruser){
+            req.session.authenticated = true;
             return res.redirect("menu")
         }
         return res.status(HttpStatus.UNAUTHORIZED).render
         ('index', { error: 'Credenciales inválidas' });
 
     }
-
+    
+    @UseGuards(LocalAuthGuard)
     @Get("menu")
     @Render("menu")
     getmenu(){}

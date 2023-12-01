@@ -12,10 +12,12 @@ import { AuthModule } from './auth/auth.module';
     envFilePath: "process.env",
     isGlobal: true
   }),
+
   TypeOrmModule.forRoot(datasourceconfig),
   UsersModule,
   ProjectsModule,
-  AuthModule],
+  AuthModule,
+  ],
   controllers: []
 })
 export class AppModule {}
