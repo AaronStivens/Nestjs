@@ -34,6 +34,7 @@ export class AuthController {
 
         if(validaruser){
             req.session.authenticated = true;
+            req.session.user = userT;
             return res.redirect("menu")
         }
         return res.status(HttpStatus.UNAUTHORIZED).render
@@ -44,7 +45,10 @@ export class AuthController {
     @UseGuards(LocalAuthGuard)
     @Get("menu")
     @Render("menu")
-    getmenu(){}
+    getmenu(@Request()req){
+        const usuario = req.session.user
+        return {usuario}
+    }
 
     
 }
