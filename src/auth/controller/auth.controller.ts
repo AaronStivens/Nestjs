@@ -49,6 +49,4 @@ export class AuthController {
         const usuario = req.session.user
         return {usuario}
     }
-
-    
 }

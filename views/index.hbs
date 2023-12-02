@@ -14,10 +14,62 @@
 <button class="BtnI" type="submit">Ingresar</button>
 
 </form>
+
+<h1 class="ME">{{error}}</h1>
 </body>
 </html>
 
 <style>
+
+ .ME{
+    position: fixed;
+    bottom: 20px; 
+    right: 20px; 
+    padding: 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: x-large;
+    background-color: rgb(223, 221, 224);
+    color: rgb(0, 0, 0);
+    border-radius: 10px; 
+    opacity: 0;
+    animation: errorA 2s ease-in-out, errorS 0.5s ease-in-out;
+}
+
+@keyframes errorA {
+    0% {
+        opacity: 0;
+    }
+    20% {
+        opacity: 1; 
+    }
+    80% {
+        opacity: 1; 
+    }
+    100% {
+        opacity: 0; 
+    }
+}
+
+@keyframes errorS {
+    0% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    50% {
+        transform: translateX(5px);
+    }
+    75% {
+        transform: translateX(-5px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+
+  }
+
+
   body {
     font-family: 'Arial', sans-serif;
     margin: 0;
