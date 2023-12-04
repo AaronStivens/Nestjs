@@ -9,3 +9,5 @@ export interface AuthBody{
     usuario:string;
     contraseña:string;
 }
+
+//Pendiente su uso

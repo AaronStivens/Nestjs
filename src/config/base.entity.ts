@@ -2,12 +2,12 @@ import {PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn} from "typeor
 
 export abstract class BaseEntity{
 
-    @PrimaryGeneratedColumn(`uuid`)
+    @PrimaryGeneratedColumn(`uuid`)//Se genera un valor unico
     id:string;
 
-    @CreateDateColumn({type:"timestamp",name: "created:_at"})
+    @CreateDateColumn({type:"timestamp",name: "created:_at"}) //Fecha y hora que se creo
     createdAt:Date;
 
-    @UpdateDateColumn({type:"timestamp",name: "updated:_at"})
+    @UpdateDateColumn({type:"timestamp",name: "updated:_at"})//Fehc y hora que se actualizo
     updatedAt:Date;
 }

@@ -1,5 +1,4 @@
 import { IProject } from "../../interfaces/project.interface";
-import { IUser } from "../../interfaces/user.interface";
 import { UsersProjecEntity } from "../../users/entity/usersproject.entity";
 import {BaseEntity,PrimaryColumn,Column,Entity,OneToMany} from "typeorm";
 

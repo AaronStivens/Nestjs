@@ -4,10 +4,11 @@ import { SnakeNamingStrategy } from "typeorm-naming-strategies";
 
 ConfigModule.forRoot({
     envFilePath: ".env"
-  })
+  })//Se trae las variables de entorno
 
 const configService =  new ConfigService()
 
+//Configuracion de Typeorm para la base de datos
 export const  datasourceconfig:DataSourceOptions = {
     type:"mysql",
     host:configService.get(`DB_HOST`),

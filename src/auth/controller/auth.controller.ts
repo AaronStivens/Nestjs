@@ -2,7 +2,6 @@ import { Body, Controller, Get, HttpCode, HttpStatus, Post, Render, Request, Res
 import { AuthService } from '../services/auth.service';
 import { JwtAuthGuard } from '../guard/auth.guard';
 import { LocalAuthGuard } from '../guard/local.guard';
-import { SocketService } from 'src/socket/socket.service';
 import { SocketGateway } from 'src/socket/socket.gateway';
 
 @Controller('auth')
@@ -11,19 +10,21 @@ export class AuthController {
     constructor(private authService: AuthService,
                 private socket:SocketGateway){}
 
+    //localhost:8000/api/auth/login            
     @HttpCode(HttpStatus.OK)
     @Post("login")
     singIn(@Body() singInDTO: Record<string,any>){
         return this.authService.signIn(singInDTO.usuario,singInDTO.contraseña)
     }
     
+    //localhost:8000/api/auth/perfil
     @UseGuards(JwtAuthGuard)
     @Get("perfil")
     getPerfil(@Request() req){
         return req.usuario
     }
     
-    //api/auth/sesion
+    //localhost:8000/api/auth/sesion
     @Get("sesion")
     @Render("index")
     getSesion(){}
@@ -44,12 +45,13 @@ export class AuthController {
 
     }
     
+    //localhost:8000/api/auth/menu
     @UseGuards(LocalAuthGuard)
     @Get("menu")
     @Render("menu")
     getmenu(@Request()req):{usuario:string}{
         const usuario = req.session.user    
-        this.socket.setUsuario(usuario)    
+        this.socket.setUsuario(usuario) //Se envia el usuario   
         return {usuario}
     }
 }

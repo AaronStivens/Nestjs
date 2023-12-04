@@ -13,20 +13,20 @@ async function bootstrap() {
   const reflector = app.get(Reflector);
   
   app.use(session({ 
-    secret: 'keyboard cat',
+    secret: 'keyboard cat',//Clave secreta
      cookie: { maxAge: 600000 //Tiempo de sesion establecido en 10 minutos
     }}))
-  app.use(morgan("dev"))
+  app.use(morgan("dev"))//Habilitar morgan para ver las solicitudes realizadas
   app.useGlobalInterceptors(new ClassSerializerInterceptor(reflector))
-  app.enableCors(cors);
-  app.setGlobalPrefix("api")
+  app.enableCors(cors);//Habilitar cors
+  app.setGlobalPrefix("api")//Habilitar "api" para las pruebas del proyecto
   app.useGlobalPipes(new ValidationPipe({transformOptions:{enableImplicitConversion:true}}));
-  app.useStaticAssets(join(__dirname, '..', 'public'));
-  app.setBaseViewsDir(join(__dirname, "../../views"));
-  app.setViewEngine('hbs')
+  app.useStaticAssets(join(__dirname, '..', 'public'));//Motor hbs
+  app.setBaseViewsDir(join(__dirname, "../../views"));//Motor hbs
+  app.setViewEngine('hbs')//Motor hbs
 
   const configService = app.get(ConfigService);
   await app.listen(configService.get("PORT"))
-  console.log(`Aplication running on: ${await app.getUrl()}`)
+  console.log(`Proyecto corriendo en: ${await app.getUrl()}`)
 }
 bootstrap();

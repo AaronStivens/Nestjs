@@ -88,7 +88,8 @@ export class UsersService {
             
         }
     }
-
+     
+    
     public async findBy({key,value}:{
         key:keyof UserDTO;
         value:any ;
@@ -100,6 +101,7 @@ export class UsersService {
         }
     }
 
+    
     async findOne(usuario: string): Promise<UsersEntity | undefined> {
         const user = await this.userRepository.findOne({ where: { usuario: usuario } });
         return user;

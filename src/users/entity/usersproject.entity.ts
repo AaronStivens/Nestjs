@@ -4,7 +4,7 @@ import {Column, Entity,ManyToOne} from "typeorm";
 import { UsersEntity } from "./users.entity";
 import { Projectentity } from "../../projects/entity/projects.entity";
 
-
+//Las entidades representan la estructua de la base de datos
 @Entity({name:"users_projects"})
 export class UsersProjecEntity extends BaseEntity{
 

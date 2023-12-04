@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { UsersService } from '../services/users.service';
 import { UpdateuserDTO, UserDTO, UserToProjectDTO } from '../DTO/user.DTO';
 
@@ -12,7 +12,7 @@ export class UsersController {
         return await this.UserService.createUser(body)
     }
 
-    @Post("registrar-proyecto")
+    @Post("registrar-proyecto")//Pendiente uso
     public async addToPoject(@Body() body: UserToProjectDTO){
         return await this.UserService.relationToProject(body)
     }

@@ -3,6 +3,8 @@ import { ACCESS_LEVEL, ROLES } from "src/constants/roles";
 import { UsersEntity } from "../entity/users.entity";
 import { Projectentity } from "src/projects/entity/projects.entity";
 
+
+//Los DTOS son como estructuras que se deben cumplir al momento de trabajar con lso decoradores en este caso POST al momento de ingresar datos a la base
 export class UserDTO{
     
     @IsOptional()
