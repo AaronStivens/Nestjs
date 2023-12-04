@@ -3,6 +3,7 @@ import { AuthService } from '../services/auth.service';
 import { JwtAuthGuard } from '../guard/auth.guard';
 import { LocalAuthGuard } from '../guard/local.guard';
 import { SocketGateway } from 'src/socket/socket.gateway';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('auth')
 export class AuthController {
@@ -12,12 +13,14 @@ export class AuthController {
 
     //localhost:8000/api/auth/login            
     @HttpCode(HttpStatus.OK)
+    @ApiTags("API de Login")
     @Post("login")
     singIn(@Body() singInDTO: Record<string,any>){
         return this.authService.signIn(singInDTO.usuario,singInDTO.contraseña)
     }
     
     //localhost:8000/api/auth/perfil
+    @ApiTags("Acceso con jwt")
     @UseGuards(JwtAuthGuard)
     @Get("perfil")
     getPerfil(@Request() req){
