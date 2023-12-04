@@ -5,6 +5,7 @@ import { datasourceconfig } from './config/data.source';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProjectsModule } from './projects/projects.module';
 import { AuthModule } from './auth/auth.module';
+import { SocketModule } from './socket/socket.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { AuthModule } from './auth/auth.module';
   UsersModule,
   ProjectsModule,
   AuthModule,
+  SocketModule,
   ],
   controllers: []
 })

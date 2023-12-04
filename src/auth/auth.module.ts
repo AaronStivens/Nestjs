@@ -5,6 +5,8 @@ import { UsersService } from 'src/users/services/users.service';
 import { UsersModule } from 'src/users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './constans/constantes';
+import { SocketService } from 'src/socket/socket.service';
+import { SocketGateway } from 'src/socket/socket.gateway';
 
 @Module({
   imports: [UsersModule,JwtModule.register({
@@ -14,6 +16,6 @@ import { jwtConstants } from './constans/constantes';
   })],
   
   controllers: [AuthController],
-  providers: [AuthService,UsersService]
+  providers: [AuthService,UsersService, SocketService, SocketGateway]
 })
 export class AuthModule {}

@@ -1,11 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NestJS Socket.io Example</title>
+  <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
 </head>
 <body>
-    <h1>Bienvenido {{usuario}}</h1> 
+
+  <h1>Bienvenido {{usuario}}</h1>
+  <h1>{{ message }}</h1>
+
+  <form id="messageForm">
+    <input type="text" id="messageInput" placeholder="Type a message">
+    <button type="submit">Send</button>
+  </form>
+
+  <h2>Console:</h2>
+  <ul id="console"></ul>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js"></script>
+
+  <script>
+    const socket = io('http://localhost:8000');
+
+    messageForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const messageInput = document.getElementById('messageInput');
+      const message = messageInput.value;
+      
+      const consoleList = document.getElementById('console');
+      const listItem = document.createElement('li');
+      listItem.textContent = `Client: ${message}`;
+      consoleList.appendChild(listItem);
+
+      socket.emit('messageFromClient' ,{ message });
+      
+      messageInput.value = '';
+    });
+  </script>
 </body>
 </html>

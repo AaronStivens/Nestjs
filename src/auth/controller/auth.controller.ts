@@ -1,13 +1,15 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Post, Redirect, Render, Request, Response, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Post, Render, Request, Response, UseGuards } from '@nestjs/common';
 import { AuthService } from '../services/auth.service';
 import { JwtAuthGuard } from '../guard/auth.guard';
 import { LocalAuthGuard } from '../guard/local.guard';
-import { request } from 'express';
+import { SocketService } from 'src/socket/socket.service';
+import { SocketGateway } from 'src/socket/socket.gateway';
 
 @Controller('auth')
 export class AuthController {
 
-    constructor(private authService: AuthService,){}
+    constructor(private authService: AuthService,
+                private socket:SocketGateway){}
 
     @HttpCode(HttpStatus.OK)
     @Post("login")
@@ -45,8 +47,9 @@ export class AuthController {
     @UseGuards(LocalAuthGuard)
     @Get("menu")
     @Render("menu")
-    getmenu(@Request()req){
-        const usuario = req.session.user
+    getmenu(@Request()req):{usuario:string}{
+        const usuario = req.session.user    
+        this.socket.setUsuario(usuario)    
         return {usuario}
     }
 }
