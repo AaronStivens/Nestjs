@@ -7,6 +7,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
 import * as session from 'express-session';
 import * as morgan from 'morgan';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -24,6 +25,16 @@ async function bootstrap() {
   app.useStaticAssets(join(__dirname, '..', 'public'));//Motor hbs
   app.setBaseViewsDir(join(__dirname, "../../views"));//Motor hbs
   app.setViewEngine('hbs')//Motor hbs
+
+  const config = new DocumentBuilder()
+    .setTitle('Usuarios')
+    .setDescription('Endpoint de usuarios')
+    .setVersion('1.0')
+    .addTag('Users')
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, document);
+
 
   const configService = app.get(ConfigService);
   await app.listen(configService.get("PORT"))
