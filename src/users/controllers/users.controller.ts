@@ -33,10 +33,15 @@ export class UsersController {
 
     }
 
-    @Delete(":id")
+    @Delete(":id")//Eliminar usuario por ID
     public async deletebyID(@Param("id") id:string){
-        return await this.UserService.deleteuser(id)
+        return await this.UserService.deleteuser(id);
 
+    }
+
+    @Delete("Todos")
+    public async deleteAll(){
+        return await this.UserService.deleteAll
     }
 
 }
