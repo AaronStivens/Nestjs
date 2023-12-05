@@ -39,9 +39,4 @@ export class UsersController {
 
     }
 
-    @Delete("Todos")
-    public async deleteAll(){
-        return await this.UserService.deleteAll
-    }
-
 }

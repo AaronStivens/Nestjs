@@ -101,13 +101,6 @@ export class UsersService {
         }
     }
 
-    public async deleteAll(){
-        return await this.userRepository.delete;
-
-
-    }
-
-
     async findOne(usuario: string): Promise<UsersEntity | undefined> {
         const user = await this.userRepository.findOne({ where: { usuario: usuario } });
         return user;
